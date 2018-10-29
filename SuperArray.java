@@ -1,11 +1,13 @@
-
-
-public class SuperArray {
+ public class  SuperArray{
 
 	   private int size;//variable
 	   private String[]data;
 	   public SuperArray() {
 		   data=new String[10];
+		   
+	   }
+	   public SuperArray(int startingCapacity) {
+		   data=new String[startingCapacity];
 		   
 	   }
 	   public void clear() {
@@ -55,8 +57,8 @@ public class SuperArray {
 		   return data[index];
 		   }
 		   else {
-			 System.out.println("Error! index out of bound:it is either less than zero or grater than equal to size");
-			 return "";
+			 throw new IndexOutOfBoundsException();
+			 //return "";
 		   }
 			   
        }
@@ -67,12 +69,11 @@ public class SuperArray {
 			   return result;
 		   }
 		   else {
-			   System.out.println("error;index out of range");
-			   return "";
+			   throw new IndexOutOfBoundsException();
 		   }
 	   }
 	   private void resize() {
-		   String[]newdata=new String[data.length*2];
+		   String[]newdata=new String[data.length*2+1];
 		   for(int i=0;i<data.length;i++) {
 			   newdata[i]=data[i];
 		   }
@@ -121,8 +122,8 @@ public class SuperArray {
 	   }
 	   public String remove(int index) {
 		   if(index<0 || index>=size) {
-			   System.out.println("error:index of out bound exception");
-			   return "";
+			   throw new IndexOutOfBoundsException();
+			   
 		   }
 		   else {
 			   this.size=size-1;

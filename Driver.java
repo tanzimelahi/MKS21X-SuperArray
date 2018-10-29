@@ -12,10 +12,17 @@ public class Driver {
     	 System.out.println("shoud also print 9 abas plus one null");
     	 System.out.println(a.toStringDebug());
     	 System.out.println("should print one aba");
+    	 try {
     	 System.out.println(a.get(7));
     	 a.set(6,"suraj");
     	 System.out.println("should print suraj");
     	 System.out.println(a.get(6));
+    	 System.out.println("should print index out bounds");
+    	 
+    	 }
+    	 catch(IndexOutOfBoundsException e) {
+    		 System.out.println("Index Out of Bounds");
+    	 }
     	 
     	  //second phase
     	  a.add("new");
@@ -51,6 +58,17 @@ public class Driver {
     	  a.remove("goku");
     	  System.out.println("should remove the first instance of goku and shift all the elements to the left");
     	  System.out.println(a);
+    	  System.out.println("this tests the exceptions");
+    	  System.out.println("shoudl print index out of bounds");
+    	  try {
+    		  System.out.println(a.get(100));
+    		  System.out.println(a.remove(2000));
+    		  System.out.println(a.set(5,"Naruto"));
+    	  }
+    	  catch(IndexOutOfBoundsException e) {
+    		  System.out.println("index out of bounds");
+    	  }
+    	  
     	  
       }
 }
