@@ -7,8 +7,13 @@
 		   
 	   }
 	   public SuperArray(int startingCapacity) {
+                  if (startingCapacity<0){
+                        throw new IllegalArgumentException("startingcapacity  illegal");
+                                                            
+                  }
+                  else{
 		   data=new String[startingCapacity];
-		   
+		   }
 	   }
 	   public void clear() {
 		   size=0;
