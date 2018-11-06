@@ -1,25 +1,21 @@
- public class  SuperArray{
+public class SuperArray {
 
 	   private int size;//variable
 	   private String[]data;
 	   public SuperArray() {
 		   data=new String[10];
-		   
+
 	   }
 	   public SuperArray(int startingCapacity) {
-                  if (startingCapacity<0){
-                        throw new IllegalArgumentException("startingcapacity  illegal");
-                                                            
-                  }
-                  else{
 		   data=new String[startingCapacity];
-		   }
+
 	   }
 	   public void clear() {
-		   size=0;
+		   this.size=0;
+		   data=new String[10];//correct change made here
 	   }
 	   public int size() {// method overloading
-		   return this.size;
+		   return size;
 	   }
 	   public boolean isEmpty() {
 		   if(size==0) {
@@ -57,15 +53,15 @@
 		   return result;
 	   }
 	   public String get(int index) {
-		  
+
 		   if (index>=0 && index<size) {
 		   return data[index];
 		   }
 		   else {
-			 throw new IndexOutOfBoundsException();
-			 //return "";
+			 throw new IndexOutOfBoundsException("index out of bounds");
+
 		   }
-			   
+
        }
 	   public String set(int index,String element) {
 		   if(index>=0 && index<size) {
@@ -74,7 +70,7 @@
 			   return result;
 		   }
 		   else {
-			   throw new IndexOutOfBoundsException();
+			   throw new IndexOutOfBoundsException("index out of bounds");
 		   }
 	   }
 	   private void resize() {
@@ -93,17 +89,19 @@
 		}
 	   public void add(int index,String element) {
 		   if(index<0 || index>=size) {
-			   System.out.println("error:index of out bound exception");
+			   throw new IndexOutOfBoundsException("index out of bounds"); //fixed the print statement and code efficiency
 		   }
 		   else {
+			   if (size==data.length) {
+				   this.resize();
+			   }
 			   this.size++;
-			   this.resize();//incase there isn't enough space in the list
 			   String[]newdata=new String[data.length];
 			   for(int i=0;i<index;i++) {
 				   newdata[i]=data[i];
 			   }
 			   newdata[index]=element;
-			   for(int i=index+1;i<newdata.length;i++) {
+			   for(int i=index+1;i<size;i++) {
 				   newdata[i]=data[i-1];
 			   }
 			   data=newdata;
@@ -115,7 +113,7 @@
 				   return i;
 			   }
 		   }return -1;
-		   
+
 	   }
 	   public int lastIndexOf(String target) {
 		   int result=-1;
@@ -127,8 +125,8 @@
 	   }
 	   public String remove(int index) {
 		   if(index<0 || index>=size) {
-			   throw new IndexOutOfBoundsException();
-			   
+			   throw new IndexOutOfBoundsException("index out of bounds");
+
 		   }
 		   else {
 			   this.size=size-1;
@@ -137,7 +135,7 @@
 				   newdata[i]=data[i];
 			   }
 			   String result=data[index];
-			   for(int i=index;i<newdata.length-1;i++) {
+			   for(int i=index;i<size;i++) {// change made
 				   newdata[i]=data[i+1];
 			   }
 			   data=newdata;
@@ -154,6 +152,5 @@
 			 }
 		 }return false;
 	 }
-	   
-}
 
+}
